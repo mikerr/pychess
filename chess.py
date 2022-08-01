@@ -2,36 +2,37 @@
 
 board = [[' ' for j in range(8)] for i in range(8)]
 
-startpieces = ['R','N','B','K','Q','B','N','R']
-pawnrow = ['P','P','P','P','P','P','P','P']
-
-#copy because python normally just refs
-board[0] = startpieces.copy()
-board[1] = pawnrow.copy()
-board[6] = pawnrow.copy()
-board[7] = startpieces.copy()
-
-def letter2num (n):
-    return (ord(n) - ord('a'))
-
-def xaxis (n):
-    return(ord ('8') - ord(n))
-
+def reset_board() :
+    blackpcs = ['R','N','B','K','Q','B','N','R']
+    whitepcs = ['r','n','b','k','q','b','n','r']
+    
+    for x in range(8) :
+        board[x][0] = blackpcs[x]
+        board[x][1] = 'P'
+        board[x][6] = 'p'
+        board[x][7] = whitepcs[x]
+        
+def draw_board() :
+    for i in range(8):
+        for j in range(8):
+            print (board[j][7-i],end=' ')
+        print ("")
+        
+def letter2num (n,m):
+    return (ord(n) - ord(m))
+    
+#begin
+reset_board()
 while 1:
-    for row in board:
-        print(row)
-    print ("Input move:")
+    draw_board()
+    print ("Input move (e.g. a2a4 )")
     move = input();
     
-    y = letter2num(move[0])
-    x = xaxis(move[1])
+    x = letter2num(move[0],'a')
+    y = letter2num(move[1],'1')
     
-    y1 = letter2num(move[2])
-    x1 = xaxis(move[3])
-     
+    x1 = letter2num(move[2],'a')
+    y1 = letter2num(move[3],'1')
+    
     board[x1][y1] = board[x][y]
-    board[x][y] = ' '
-    
-
-
-
+    board[x][y] = 
